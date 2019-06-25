@@ -1,0 +1,105 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="UserMasterPage.master.cs" Inherits="UserMasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>
+        <asp:ContentPlaceHolder id="cphTitle" runat="server">
+        </asp:ContentPlaceHolder>
+    </title>
+
+    	<style>
+		#nav {
+			list-style-type: none;	/*去掉无序列表前面的点*/
+	        margin:  0;
+	        padding: 0;
+	        overflow: hidden;	/*	如果内容被修剪，则浏览器会隐藏其余的内容。*/
+	        background-color: #555;
+	        height:48px;
+	        width:auto;
+		}
+		#nav li {
+			cursor:pointer;  /*光标移动到li上变成手形*/ 
+			float:left;      /*所有的li从左到右排列*/ 
+		}
+		#nav li a {
+			display: block;	/* 显示块元素的链接，让整体变为可点击链接区域（不只是文本），它允许我们指定宽度*/
+	        color: white;	/*字体颜色*/
+	        text-align: center;	/*文本居中*/
+	        padding: 14px 16px;
+	        text-decoration: none;
+		}
+		#nav li a:hover {
+			background-color: #111;
+		}
+			
+		#userpagemenu {
+			list-style-type: none;	/*去掉无序列表前面的点*/
+	        margin: 0;				/*外边距*/
+	        padding: 0;				/*内边距*/
+	        width: 10%;				/*宽度*/
+	        background-color: #333;	/*背景色*/
+	        position: fixed;		/*生成绝对定位的元素，相对于浏览器窗口进行定位。*/
+	        height: 100%;			/*高度*/
+	        overflow: auto;
+	        /*border: 1px solid red;	*/
+		}
+		#userpagemenu li {
+			margin-top:10px;
+	        cursor:pointer;			/*光标移动到li上变成手形*/
+		}
+		#userpagemenu li a {
+			display: block;
+	        color: #000;
+	        padding: 8px 16px;
+	        text-decoration: none;
+	        height:30px;
+	        color: white;
+	        text-align:center;
+				
+		}
+		#userpagemenu li a:hover:not(.active) {
+			background-color: #4CAF50;
+	        color: white;
+		}
+
+    </style>
+     <script type="text/javascript">
+         function delCookie(name) {//为了删除指定名称的cookie，可以将其过期时间设定为一个过去的时间   
+             var date = new Date();
+             date.setTime(date.getTime() - 10000);
+             document.cookie = name + "=a; expires=" + date.toGMTString();
+         }
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <img src="top.png"/>
+        <!--导航条-->
+	    <div >   
+	    	<ul id="nav">
+		    	
+	    	</ul>
+	    </div>
+        <!--左侧菜单项 -->
+	    <div >
+	    	<ul id="userpagemenu">
+	    		<li><a href="UserPage.aspx">首页</a></li>
+	    		<li><a href="UserInfo.aspx">个人信息</a></li>
+	    		<li><a href="ChangePwd.aspx">修改密码</a></li>
+	    		<li><a href="MyBorrowBook.aspx">当前借阅情况</a></li>
+	    		<li><a href="MyBorrowHistory.aspx">我的借书历史</a></li>
+	    		<li><a href="login.aspx" onclick="delCookie('userid')"> 退出登录 </a></li>
+	    	</ul>
+	    </div>
+        <!--自定义区 -->
+        <div style="margin-left:10%;">
+            <asp:ContentPlaceHolder id="cphContent" runat="server">
+            
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
